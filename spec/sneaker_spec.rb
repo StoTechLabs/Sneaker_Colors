@@ -8,18 +8,19 @@ describe Sneaker do
 			expect(test_sneaker).to be_an_instance_of Sneaker
 		end
 
-		it 'should display atributes when they are called on the class' do
+		it 'should display attributes when they are called on the class' do
 			test_sneaker = Sneaker.new({:brand => 'Nike', :style => 'Yeezy'})
 			expect(test_sneaker.brand).to eq 'Nike'
 		end
-
 	end
 
+	describe 'Sneaker.all' do
+		it 'shoud return all of the saved sneakers' do
+			test_sneaker = Sneaker.new({:brand => 'Nike', :style => 'Yeezy'})
+			test_sneaker.save
+			expect(Sneaker.all).to eq [test_sneaker]
+		end
+	end
 
-
-
-
-
-
-	
 end
+
