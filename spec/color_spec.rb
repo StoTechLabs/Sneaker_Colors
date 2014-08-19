@@ -21,7 +21,14 @@ describe Color do
 			expect(Color.all).to eq [test_color]
 		end
 	end
-
+	
+	describe 'save' do
+		it 'should set the id when the color is saved into the datebase' do
+			test_color = Color.new({:name => 'Solar Red'})
+			test_color.save
+			expect(test_color.id).to be_an_instance_of Fixnum
+		end
+	end
 
 
 	
