@@ -13,7 +13,16 @@ describe 'Sneaker_Colorway' do
 			expect(test_colorway.sneaker_id).to eq 1
 		end
 	end
+
+	describe 'Sneaker_Colorway.all' do
+		it 'should return all of the saved sneaker colorways' do
+			test_colorway = Sneaker_Colorway.new({:sneaker_id => 1, :color_id => 2})
+			test_colorway.save
+			expect(Sneaker_Colorway.all).to eq [test_colorway]
+		end
+	end
 	
+
 
 
 end
