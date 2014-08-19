@@ -1,14 +1,16 @@
 class Sneaker
 
-	attr_reader :brand, :style
+	attr_reader :brand, :style, :id
 
 	def initialize(attributes)
 		@brand = attributes[:brand]
 		@style = attributes[:style]
+		@id = attributes[:id]
 	end 
 
 	def save
-		saved_sneakers = DB.exec("INSERT INTO sneaker (brand, style) VALUES ('#{brand}', '#{style}');")
+		saved_sneakers = DB.exec("INSERT INTO sneaker (brand, style) VALUES ('#{brand}', '#{style}') RETURNING id;")
+		@id = saved_sneakers.first['id'].to_i
 	end
 
 	def Sneaker.all 

@@ -22,5 +22,12 @@ describe Sneaker do
 		end
 	end
 
+	describe 'save' do
+		it 'should set the id when the sneaker is saved into the datebase' do
+			test_sneaker = Sneaker.new({:brand => 'Nike', :style => 'Yeezy'})
+			test_sneaker.save
+			expect(test_sneaker.id).to be_an_instance_of Fixnum
+		end
+	end
 end
 
