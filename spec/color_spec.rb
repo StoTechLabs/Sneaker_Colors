@@ -14,5 +14,15 @@ describe Color do
 		end
 	end
 
+	describe 'Color.all' do
+		it 'shoud return all of the saved colors' do
+			test_color = Color.new({:name => 'Solar Red'})
+			test_color.save
+			expect(Color.all).to eq [test_color]
+		end
+	end
+
+
+
 	
 end
