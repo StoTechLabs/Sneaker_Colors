@@ -7,6 +7,11 @@ describe Color do
 			test_color = Color.new({:name => 'Solar Red'})
 			expect(test_color).to be_an_instance_of Color
 		end
+	
+	it 'should display attributes when they are called on the class' do
+			test_color = Color.new({:name => 'Solar Red'})
+			expect(test_color.name).to eq 'Solar Red'
+		end
 	end
 
 	
