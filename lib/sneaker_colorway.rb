@@ -1,14 +1,16 @@
 class Sneaker_Colorway 
 
-	attr_reader :sneaker_id, :color_id
+	attr_reader :sneaker_id, :color_id, :id
 
 	def initialize(attributes)
 		@sneaker_id = attributes[:sneaker_id]
 		@color_id = attributes[:color_id]
+		@id = attributes[:id]
 	end
 
 	def save
 		saved_colorways = DB.exec("INSERT INTO sneaker_colorway (sneaker_id, color_id) VALUES ('#{sneaker_id}', '#{color_id}') RETURNING id;")
+		@id = saved_colorways.first['id'].to_i
 	end
 
 	def Sneaker_Colorway.all 

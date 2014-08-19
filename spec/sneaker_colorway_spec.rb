@@ -21,7 +21,14 @@ describe 'Sneaker_Colorway' do
 			expect(Sneaker_Colorway.all).to eq [test_colorway]
 		end
 	end
-	
+
+	describe 'save' do
+		it 'should set the id number when the Sneaker_Colorway is saves into the database' do
+			test_colorway = Sneaker_Colorway.new({:sneaker_id => 1, :color_id => 2})
+			test_colorway.save
+			expect(test_colorway.id).to be_an_instance_of Fixnum
+		end
+	end
 
 
 
