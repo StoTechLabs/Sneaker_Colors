@@ -30,6 +30,4 @@ describe 'Sneaker_Colorway' do
 		end
 	end
 
-
-
 end

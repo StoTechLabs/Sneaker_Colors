@@ -30,6 +30,19 @@ describe Color do
 		end
 	end
 
+	describe 'self.list_sneaker_by_color' do
+		it 'should list all the colors of a selected sneaker' do
+			test_sneaker = Sneaker.new({:brand => 'Nike', :style => 'Yeezy'})
+			test_sneaker.save
+			test_color = Color.new({:name => 'Solar Red'})
+			test_color.save
+			test_colorway = Sneaker_Colorway.new({:sneaker_id => test_sneaker.id, :color_id => test_color.id})
+			test_colorway.save
+			test_colors = Color.list_sneaker_by_color(test_sneaker.id)
+			expect(test_colors.first).to eq test_color
+		end
+	end
+
 
 	
 end

@@ -24,8 +24,13 @@ class Sneaker_Colorway
 		sneaker_colorways
 	end
 
+
 	def ==(another_colorway)
 		self.sneaker_id == another_colorway.sneaker_id && self.color_id == another_colorway.color_id
 	end
+
+	
+
+
 
 end

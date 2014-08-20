@@ -26,4 +26,17 @@ class Color
 	end
 
 
+	def self.list_sneaker_by_color(sneaker_id)
+		results = DB.exec("SELECT color.* FROM sneaker JOIN sneaker_colorway ON (sneaker_colorway.sneaker_id = sneaker.id)" +
+			"JOIN color ON (color.id = sneaker_colorway.color_id) WHERE sneaker.id = #{sneaker_id};")
+	
+		colors = []
+
+		results.each do |color|
+			color_name = color['name']
+			colors << Color.new({:name => color_name})
+		end
+		colors
+	end
+
 end
