@@ -31,11 +31,10 @@ class Color
 			"JOIN color ON (color.id = sneaker_colorway.color_id) WHERE sneaker.id = #{sneaker_id};")
 	
 		colors = []
-
 		results.each do |color|
 			color_name = color['name']
 			colors << Color.new({:name => color_name})
-		end
+		end	
 		colors
 	end
 

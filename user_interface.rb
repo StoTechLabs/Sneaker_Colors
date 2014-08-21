@@ -2,12 +2,14 @@ require './lib/sneaker'
 require './lib/color'
 require './lib/sneaker_colorway'
 require 'pg'
+require 'pry'
 
-DB = PG.connect(:dbname => 'sneaker_colorway')
+DB = PG.connect(:dbname => 'sneaker_colors')
 
 @current_sneaker = nil
 @current_color = nil
 @current_sneaker_colorway = nil
+
 
 def main_menu	
 	system 'clear'
@@ -18,7 +20,7 @@ def main_menu
 		if user_choice == 'a'
 			add_sneaker
 		elsif user_choice == 'l'
-			list_sneaker
+			list_sneakers
 		elsif user_choice == 'x'
 			puts "Thanks for using Joshua's Sneaker Colors"
 			exit
@@ -46,18 +48,19 @@ def add_color
 	@current_color = Color.new({:name => color_choice})
 	@current_color.save
 	@current_sneaker_colorway = Sneaker_Colorway.new({:sneaker_id => @current_sneaker.id, :color_id => @current_color.id})
+	@current_sneaker_colorway.save
 	sleep(0.5)	
 	puts "New Sneaker and it's colorway has been added"
-		loop do
+	loop do
     puts "Type 'a' to add another sneaker, or 'm' to go back to the main menu."
     choice = gets.chomp
-    if choice == 'a'
+     if choice == 'a'
       add_sneaker
-    elsif choice == 'm'
+     elsif choice == 'm'
       main_menu
-    else
+     else
       puts "Not a valid entry, please try again."
-    end
+     end
 	end
 	main_menu
 end
@@ -71,20 +74,17 @@ def list_sneakers
   choice = gets.chomp
   Sneaker.all.each do |sneaker|
     if choice == sneaker.style
-      @current_sneaker = sneaker
-    end
-  end
- list_by_color
-end
-
-def list_by_color
-	sleep(0.5)
-	colors = Color.list_sneaker_by_color(@current_sneaker.id)
-		colors.each do |color|
-			puts color.name
+      current_sneaker = sneaker
+      colors = Color.list_sneaker_by_color(current_sneaker.id)
+      	colors.each do |color|
+					puts color.name
+				end
+			end
 		end
-		sleep(5.0)
+		gets.chomp
 		main_menu
-	end 
-end
+	end
+
+main_menu
+
 

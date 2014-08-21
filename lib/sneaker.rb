@@ -19,7 +19,8 @@ class Sneaker
 		saved_sneakers.each do |sneaker|
 			brand = sneaker['brand']
 			style = sneaker['style']
-			sneakers << Sneaker.new({:brand => brand, :style => style})
+			id = sneaker['id'].to_i
+			sneakers << Sneaker.new({:id => id, :brand => brand, :style => style})
 		end
 		sneakers
 	end
